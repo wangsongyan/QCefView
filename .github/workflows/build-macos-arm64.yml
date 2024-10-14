@@ -37,7 +37,7 @@ jobs:
         uses: jurplel/install-qt-action@v3
         with:
           setup-python: 'true'
-          arch: 'arm64'
+          arch: 'clang_64'
       
       - name: Setup Xcode version
         uses: maxim-lobanov/setup-xcode@v1
