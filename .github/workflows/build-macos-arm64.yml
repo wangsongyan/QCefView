@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - '.github/workflows/build-macos-x86_64.yml'
+      - '.github/workflows/build-macos-arm64.yml'
       - 'CMakeLists.txt'
       - 'CefViewCore'
       - 'example/**'
@@ -13,7 +13,7 @@ on:
   pull_request:
     branches: [main]
     paths:
-      - '.github/workflows/build-macos-x86_64.yml'
+      - '.github/workflows/build-macos-arm64.yml'
       - 'CMakeLists.txt'
       - 'CefViewCore'
       - 'example/**'
@@ -57,7 +57,7 @@ jobs:
       - name: Configure CMake
         # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
         # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
-        run: cmake -G "Xcode" -B ${{github.workspace}}/build -DPROJECT_ARCH=x86_64 -DBUILD_DEMO=ON -DUSE_SANDBOX=ON -DCMAKE_INSTALL_PREFIX:PATH=${{github.workspace}}/out/install
+        run: cmake -G "Xcode" -B ${{github.workspace}}/build -DPROJECT_ARCH=arm -DBUILD_DEMO=ON -DUSE_SANDBOX=ON -DCMAKE_INSTALL_PREFIX:PATH=${{github.workspace}}/out/install
 
       - name: Build QCefView
         run: xcodebuild -project ${{github.workspace}}/build/QCefView.xcodeproj -target QCefView -configuration ${{env.BUILD_TYPE}}
@@ -75,7 +75,7 @@ jobs:
         uses: actions/upload-artifact@v3
         # Upload artifact
         with:
-          name: QCefView.macos.x86_64
+          name: QCefView.macos.arm64
           path: ${{github.workspace}}/out/install/QCefView
 
       - name: Create Demo artifact
@@ -83,7 +83,7 @@ jobs:
         uses: actions/upload-artifact@v3
         # Upload artifact
         with:
-          name: QCefViewTest.macos.x86_64
+          name: QCefViewTest.macos.arm64
           path: ${{github.workspace}}/out/install/QCefViewTest
 
     #- name: Test
