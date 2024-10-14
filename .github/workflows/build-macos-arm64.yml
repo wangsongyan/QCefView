@@ -1,4 +1,4 @@
-name: Build on macOS-x86_64
+name: Build on macOS-arm64
 
 on:
   push:
